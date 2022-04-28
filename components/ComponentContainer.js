@@ -4,9 +4,9 @@ import PropTypes from "prop-types";
 import { Flex, Image } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import styled from "@emotion/styled";
-import Footer from "./footer";
+import Footer from "./Footer";
 
-const CompContainer = ({ children }) => {
+const ComponentContainer = ({ children }) => {
   const StickyNav = styled(Flex)`
     z-index: 10;
     top: 0;
@@ -44,10 +44,10 @@ const CompContainer = ({ children }) => {
     </>
   );
 };
-CompContainer.propTypes = {
+ComponentContainer.propTypes = {
   children: PropTypes.element,
 };
-CompContainer.defaultProps = {
+ComponentContainer.defaultProps = {
   children: null,
 };
-export default CompContainer;
+export default ComponentContainer;

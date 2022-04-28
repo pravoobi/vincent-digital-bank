@@ -1,12 +1,12 @@
 import React from "react";
 import { Box, Container, Text } from "@chakra-ui/react";
 
-import CompContainer from "../components/Container";
+import ComponentContainer from "../components/ComponentContainer";
 
 export default function ApplicationDeclined() {
   return (
     <>
-      <CompContainer>
+      <ComponentContainer>
         <Container maxW="2xl" centerContent>
           <Box w="600px" overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
@@ -21,7 +21,7 @@ export default function ApplicationDeclined() {
             </Text>
           </Box>
         </Container>
-      </CompContainer>
+      </ComponentContainer>
     </>
   );
 }

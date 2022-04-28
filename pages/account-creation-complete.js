@@ -17,7 +17,7 @@ import {
   setApplicationData,
 } from "../store/actions/applicationAction";
 import { useEffect, useState } from "react";
-import CompContainer from "../components/Container";
+import ComponentContainer from "../components/ComponentContainer";
 import { APPLICATION_STEPS } from "./../constants";
 import { DASHBOARD } from "./../routes";
 import Confetti from "react-confetti";
@@ -50,7 +50,7 @@ export default function AccountCreationComplete() {
       {isConfettiShown && width && height && (
         <Confetti width={width} height={height} />
       )}
-      <CompContainer>
+      <ComponentContainer>
         <Container maxW="2xl" centerContent>
           <Box w="600px" overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
@@ -120,7 +120,7 @@ export default function AccountCreationComplete() {
             </form>
           </Box>
         </Container>
-      </CompContainer>
+      </ComponentContainer>
     </>
   );
 }

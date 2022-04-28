@@ -17,7 +17,7 @@ import {
   setApplicationData,
 } from "../store/actions/applicationAction";
 import { useState } from "react";
-import CompContainer from "../components/Container";
+import ComponentContainer from "../components/ComponentContainer";
 import { APPLICATION_STEPS, COUNTRIES, OCCUPATIONS } from "./../constants";
 import { SECURITY_SETUP_VERIFICATION_ROUTE } from "./../routes";
 
@@ -46,7 +46,7 @@ export default function PersonalInformation() {
 
   return (
     <>
-      <CompContainer>
+      <ComponentContainer>
         <Container maxW="2xl" centerContent>
           <Box w="600px" overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
@@ -128,7 +128,7 @@ export default function PersonalInformation() {
             </form>
           </Box>
         </Container>
-      </CompContainer>
+      </ComponentContainer>
     </>
   );
 }

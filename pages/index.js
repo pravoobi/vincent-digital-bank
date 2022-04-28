@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import styled from "@emotion/styled";
 import { ChevronRightIcon } from "@chakra-ui/icons";
 
-import CompContainer from "../components/Container";
+import ComponentContainer from "../components/ComponentContainer";
 import { START_APPLICATION_ROUTE } from "./../routes";
 import { APPLICATION_STEPS } from "./../constants";
 import { setApplicationStep } from "../store/actions/applicationAction";
@@ -30,7 +30,7 @@ export default function Home() {
 
   return (
     <>
-      <CompContainer>
+      <ComponentContainer>
         <Box>
           <BackgroundImg>
             <Box w="100%" display="flex">
@@ -123,7 +123,7 @@ export default function Home() {
             </Flex>
           </Flex>
         </Box>
-      </CompContainer>
+      </ComponentContainer>
     </>
   );
 }

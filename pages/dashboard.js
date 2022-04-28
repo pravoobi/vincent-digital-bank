@@ -12,7 +12,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import CompContainer from "../components/Container";
+import ComponentContainer from "../components/ComponentContainer";
 
 export default function Dashboard() {
   // @ts-ignore
@@ -21,7 +21,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <CompContainer>
+      <ComponentContainer>
         <Container maxW="2xl" centerContent>
           <Box w="600px" overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
@@ -58,7 +58,7 @@ export default function Dashboard() {
             </TableContainer>
           </Box>
         </Container>
-      </CompContainer>
+      </ComponentContainer>
     </>
   );
 }

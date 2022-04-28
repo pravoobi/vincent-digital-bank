@@ -18,7 +18,7 @@ import {
   setApplicationData,
 } from "../store/actions/applicationAction";
 import { useState } from "react";
-import CompContainer from "../components/Container";
+import ComponentContainer from "../components/ComponentContainer";
 import { APPLICATION_STEPS } from "./../constants";
 import { ACCOUNT_CREATION_COMPLETE_ROUTE } from "./../routes";
 
@@ -40,7 +40,7 @@ export default function SecuritySetupVerification() {
 
   return (
     <>
-      <CompContainer>
+      <ComponentContainer>
         <Container maxW="2xl" centerContent>
           <Box w="600px" overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
@@ -139,7 +139,7 @@ export default function SecuritySetupVerification() {
             </form>
           </Box>
         </Container>
-      </CompContainer>
+      </ComponentContainer>
     </>
   );
 }
