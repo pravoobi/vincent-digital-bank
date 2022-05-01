@@ -14,17 +14,20 @@ import {
 import { InfoIcon } from "@chakra-ui/icons";
 import { useSelector } from "react-redux";
 import ComponentContainer from "../components/ComponentContainer";
+import useWindowSize from "../utils/useWindowSize";
 
 export default function Dashboard() {
   // @ts-ignore
   const applicationData = useSelector((state) => state.application);
   const { firstName = "John" } = applicationData || {};
 
+  const { width } = useWindowSize();
+
   return (
     <>
       <ComponentContainer>
         <Container maxW="2xl" centerContent>
-          <Box w="700px" overflow="hidden" alignItems="center">
+          <Box maxWidth={700} overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
               {firstName}, Welcome!
             </Text>
@@ -36,7 +39,11 @@ export default function Dashboard() {
               <InfoIcon w={5} h={5} color="blue.900" /> Fund your Account now
             </Text>
             <TableContainer color={"blue.300"} my={5}>
-              <Table variant="simple" colorScheme="facebook">
+              <Table
+                variant="simple"
+                colorScheme="facebook"
+                size={width < 500 ? "sm" : "md"}
+              >
                 <Thead>
                   <Tr>
                     <Th>Account</Th>

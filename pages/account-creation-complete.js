@@ -52,7 +52,7 @@ export default function AccountCreationComplete() {
       )}
       <ComponentContainer>
         <Container maxW="2xl" centerContent>
-          <Box w="700px" overflow="hidden" alignItems="center">
+          <Box maxWidth={700} overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
               Congratulations! on your account opening
             </Text>

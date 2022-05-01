@@ -16,7 +16,11 @@ import { FiTwitter, FiLinkedin, FiYoutube, FiMail } from "react-icons/fi";
 const Footer = () => {
   return (
     <Box bg="gray.600" color="#FFFFFF" marginTop={6} p={2} width="100%">
-      <Flex justify="space-around" py={3}>
+      <Flex
+        justify="space-around"
+        py={3}
+        flexDirection={["column", "row", "row", "row"]}
+      >
         <VStack>
           <NextLink href={"/legal/site-terms"} passHref>
             <Link
@@ -44,65 +48,59 @@ const Footer = () => {
           </NextLink>
         </VStack>
         <HStack>
-          <Flex align="center" my={4} direction="column">
-            <div>
-              <Link
-                href="https://twitter.com/vincentBank"
-                title="Twitter"
-                isExternal
-              >
-                <IconButton
-                  aria-label="Twitter"
-                  icon={<FiTwitter />}
-                  size="lg"
-                  color="#FFF"
-                  variant="ghost"
-                  _hover={{ backgroundColor: "#DDD" }}
-                />
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/vincetBank"
-                title="LinkedIn"
-                isExternal
-              >
-                <IconButton
-                  aria-label="LinkedIn"
-                  icon={<FiLinkedin />}
-                  size="lg"
-                  color={"#FFF"}
-                  variant="ghost"
-                  _hover={{ backgroundColor: "#DDD" }}
-                />
-              </Link>
-              <Link
-                href="https://www.youtube.com/VincentBank"
-                title="YouTube"
-                isExternal
-              >
-                <IconButton
-                  aria-label="YouTube"
-                  icon={<FiYoutube />}
-                  size="lg"
-                  color={"#FFF"}
-                  variant="ghost"
-                  _hover={{ backgroundColor: "#DDD" }}
-                />
-              </Link>
-              <Link
-                href="mailto:info@vincent-bank.com"
-                title="Email"
-                isExternal
-              >
-                <IconButton
-                  aria-label="Email"
-                  icon={<FiMail />}
-                  size="lg"
-                  color={"#FFF"}
-                  variant="ghost"
-                  _hover={{ backgroundColor: "#DDD" }}
-                />
-              </Link>
-            </div>
+          <Flex align="center" my={4} direction="row" mx={"auto"}>
+            <Link
+              href="https://twitter.com/vincentBank"
+              title="Twitter"
+              isExternal
+            >
+              <IconButton
+                aria-label="Twitter"
+                icon={<FiTwitter />}
+                size="lg"
+                color="#FFF"
+                variant="ghost"
+                _hover={{ backgroundColor: "#DDD" }}
+              />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/vincetBank"
+              title="LinkedIn"
+              isExternal
+            >
+              <IconButton
+                aria-label="LinkedIn"
+                icon={<FiLinkedin />}
+                size="lg"
+                color={"#FFF"}
+                variant="ghost"
+                _hover={{ backgroundColor: "#DDD" }}
+              />
+            </Link>
+            <Link
+              href="https://www.youtube.com/VincentBank"
+              title="YouTube"
+              isExternal
+            >
+              <IconButton
+                aria-label="YouTube"
+                icon={<FiYoutube />}
+                size="lg"
+                color={"#FFF"}
+                variant="ghost"
+                _hover={{ backgroundColor: "#DDD" }}
+              />
+            </Link>
+            <Link href="mailto:info@vincent-bank.com" title="Email" isExternal>
+              <IconButton
+                aria-label="Email"
+                icon={<FiMail />}
+                size="lg"
+                color={"#FFF"}
+                variant="ghost"
+                _hover={{ backgroundColor: "#DDD" }}
+              />
+            </Link>
           </Flex>
         </HStack>
         <VStack>

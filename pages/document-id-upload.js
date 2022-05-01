@@ -108,7 +108,7 @@ export default function DocumentIdUpload() {
     <>
       <ComponentContainer>
         <Container maxW="2xl" centerContent>
-          <Box w="700px" overflow="hidden" alignItems="center">
+          <Box maxWidth={700} overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
               Upload your document ID
             </Text>
@@ -126,7 +126,12 @@ export default function DocumentIdUpload() {
                     Select your ID type to Upload
                   </FormLabel>
                   <RadioGroup onChange={setIdTypeValue} value={idTypeValue}>
-                    <Stack direction="row" ml={2} my={2} spacing={2}>
+                    <Stack
+                      direction={["column", "row"]}
+                      ml={2}
+                      my={2}
+                      spacing={2}
+                    >
                       <Radio value="drivingLicense">Driving License</Radio>
                       <Radio value="StateId">State ID</Radio>
                       <Radio value="passport">Passport</Radio>

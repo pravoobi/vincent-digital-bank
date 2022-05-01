@@ -36,8 +36,8 @@ export default function Home() {
             <Box w="100%" display="flex">
               <Box
                 mt={100}
-                ml={100}
-                w="45%"
+                ml={[5, 50, 80, 100]}
+                w={["90%", "50%", "45%", "45%"]}
                 p={8}
                 bgColor="gray.50"
                 opacity="1"
@@ -71,6 +71,7 @@ export default function Home() {
             bgColor="blue.900"
             color="gray.50"
             p={10}
+            flexDirection={["column", "column", "row", "row"]}
           >
             <Box flexDirection="column" display="flex" flexBasis={"30%"} ml={3}>
               <Box>Earn upto</Box>
@@ -89,7 +90,7 @@ export default function Home() {
               for you.
             </Box>
           </Box>
-          <Flex>
+          <Flex flexDirection={["column", "column", "row", "row"]}>
             <Flex flexDirection="column" p={5} flexBasis={"33%"}>
               <Text as="h3" fontSize="3xl" p={2}>
                 High Yield Savings
