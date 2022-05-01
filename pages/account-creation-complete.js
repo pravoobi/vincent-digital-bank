@@ -52,7 +52,7 @@ export default function AccountCreationComplete() {
       )}
       <ComponentContainer>
         <Container maxW="2xl" centerContent>
-          <Box w="600px" overflow="hidden" alignItems="center">
+          <Box w="700px" overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
               Congratulations! on your account opening
             </Text>
@@ -66,7 +66,7 @@ export default function AccountCreationComplete() {
               onSubmit={handleAccountCreationCompleteSubmit}
             >
               <Stack
-                maxWidth={600}
+                maxWidth={700}
                 margin="auto"
                 spacing={5}
                 marginTop={5}

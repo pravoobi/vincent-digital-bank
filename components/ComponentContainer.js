@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-
+import NextLink from "next/link";
 import { Flex, Image } from "@chakra-ui/react";
 import { HamburgerIcon } from "@chakra-ui/icons";
 import styled from "@emotion/styled";
@@ -28,12 +28,17 @@ const ComponentContainer = ({ children }) => {
         mx="auto"
       >
         <Flex width="100%" justify="space-between">
-          <Image
-            src="/vincent-logo.png"
-            alt="Vincent Bank"
-            width="100px"
-            height="60px"
-          />
+          <NextLink href="/" passHref>
+            <a>
+              <Image
+                src="/vincent-logo.png"
+                alt="Vincent Bank"
+                width="100px"
+                height="60px"
+              />
+            </a>
+          </NextLink>
+
           <HamburgerIcon w={8} h={8} />
         </Flex>
       </StickyNav>

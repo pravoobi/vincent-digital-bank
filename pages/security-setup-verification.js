@@ -42,9 +42,9 @@ export default function SecuritySetupVerification() {
     <>
       <ComponentContainer>
         <Container maxW="2xl" centerContent>
-          <Box w="600px" overflow="hidden" alignItems="center">
+          <Box w="700px" overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
-              Setup your security word and verify OTP
+              Setup your security
             </Text>
 
             <form
@@ -52,7 +52,7 @@ export default function SecuritySetupVerification() {
               onSubmit={handleSecuritySetupVerificationSubmit}
             >
               <Stack
-                maxWidth={600}
+                maxWidth={700}
                 margin="auto"
                 spacing={5}
                 marginTop={5}
@@ -94,7 +94,7 @@ export default function SecuritySetupVerification() {
                 <FormControl isRequired>
                   <FormLabel htmlFor="otp">Email One Time Pin (OTP)</FormLabel>
                   <Input
-                    type="otp"
+                    type="password"
                     placeholder="Email One Time Pin"
                     aria-label="Email One Time Pin"
                     id="otp"
@@ -109,7 +109,7 @@ export default function SecuritySetupVerification() {
                 <FormControl isRequired>
                   <FormLabel htmlFor="smsotp">SMS One Time Pin (OTP)</FormLabel>
                   <Input
-                    type="smsotp"
+                    type="password"
                     placeholder="SMS One Time Pin"
                     aria-label="SMS One Time Pin"
                     id="smsotp"

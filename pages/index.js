@@ -84,9 +84,9 @@ export default function Home() {
             </Box>
             <Box p={3} ml={5} flexBasis={"50%"}>
               At Vincent Bank, we liberate customers from the constraints of
-              traditional banking. Because we `&apos` re digital, our overhead
-              costs are lower than traditional banks. Smarter savings means more
-              money for you.
+              traditional banking. Because we&#39;re digital, our overhead costs
+              are lower than traditional banks. Smarter savings means more money
+              for you.
             </Box>
           </Box>
           <Flex>

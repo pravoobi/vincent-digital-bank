@@ -8,7 +8,7 @@ export default function ApplicationDeclined() {
     <>
       <ComponentContainer>
         <Container maxW="2xl" centerContent>
-          <Box w="600px" overflow="hidden" alignItems="center">
+          <Box w="700px" overflow="hidden" alignItems="center">
             <Text as="h1" fontWeight="bold" fontSize="5xl" my={3}>
               We are sorry
             </Text>
