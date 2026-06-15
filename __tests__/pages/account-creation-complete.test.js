@@ -8,9 +8,18 @@ import { APPLICATION_STEPS } from "../../constants";
 
 const mockPush = jest.fn();
 jest.mock("next/router", () => ({ useRouter: () => ({ push: mockPush }) }));
-jest.mock("next/link", () => ({ __esModule: true, default: ({ children }) => children }));
-jest.mock("react-confetti", () => () => <div data-testid="confetti" />);
-jest.mock("../../utils/useWindowSize", () => () => ({ width: 1024, height: 768 }));
+jest.mock("next/link", () => ({
+  __esModule: true,
+  default: ({ children }) => children,
+}));
+jest.mock("react-confetti", () => {
+  const ConfettiMock = () => <div data-testid="confetti" />;
+  return ConfettiMock;
+});
+jest.mock("../../utils/useWindowSize", () => () => ({
+  width: 1024,
+  height: 768,
+}));
 
 describe("AccountCreationComplete page", () => {
   beforeEach(() => {

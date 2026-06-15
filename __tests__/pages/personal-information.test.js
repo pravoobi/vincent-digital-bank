@@ -8,7 +8,10 @@ import { APPLICATION_STEPS } from "../../constants";
 
 const mockPush = jest.fn();
 jest.mock("next/router", () => ({ useRouter: () => ({ push: mockPush }) }));
-jest.mock("next/link", () => ({ __esModule: true, default: ({ children }) => children }));
+jest.mock("next/link", () => ({
+  __esModule: true,
+  default: ({ children }) => children,
+}));
 
 describe("PersonalInformation page", () => {
   beforeEach(() => {
@@ -56,6 +59,8 @@ describe("PersonalInformation page", () => {
     fireEvent.change(citizenshipSelect, { target: { value: "Australia" } });
     fireEvent.submit(screen.getByPlaceholderText("Phone").closest("form"));
     await waitFor(() => expect(mockPush).toHaveBeenCalled());
-    expect(store.getState().applicationData.application.citizenship).toBe("Australia");
+    expect(store.getState().applicationData.application.citizenship).toBe(
+      "Australia"
+    );
   });
 });

@@ -1,5 +1,9 @@
 import applicationReducer from "../../store/reducers/applicationReducer";
-import { GET_SAMPLE, SET_APPLICATION, SET_APPLICATION_STEP } from "../../store/types";
+import {
+  GET_SAMPLE,
+  SET_APPLICATION,
+  SET_APPLICATION_STEP,
+} from "../../store/types";
 
 const initialState = {
   sample: [],
@@ -36,7 +40,10 @@ describe("applicationReducer", () => {
       type: SET_APPLICATION,
       payload: { firstName: "John" },
     });
-    expect(second.application).toEqual({ email: "test@test.com", firstName: "John" });
+    expect(second.application).toEqual({
+      email: "test@test.com",
+      firstName: "John",
+    });
   });
 
   it("overwrites existing fields on SET_APPLICATION", () => {

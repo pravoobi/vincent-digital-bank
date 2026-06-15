@@ -8,7 +8,10 @@ import { APPLICATION_STEPS } from "../../constants";
 
 const mockPush = jest.fn();
 jest.mock("next/router", () => ({ useRouter: () => ({ push: mockPush }) }));
-jest.mock("next/link", () => ({ __esModule: true, default: ({ children }) => children }));
+jest.mock("next/link", () => ({
+  __esModule: true,
+  default: ({ children }) => children,
+}));
 
 describe("SecuritySetupVerification page", () => {
   beforeEach(() => {
@@ -31,8 +34,14 @@ describe("SecuritySetupVerification page", () => {
   it("dispatches security data and navigates on submit", async () => {
     const { store } = renderWithProviders(<SecuritySetupVerification />);
     await userEvent.type(screen.getByLabelText(/security word/i), "BlueSky");
-    await userEvent.type(screen.getByLabelText(/security hint/i), "My favourite colour");
-    await userEvent.type(screen.getByLabelText(/email one time pin/i), "112233");
+    await userEvent.type(
+      screen.getByLabelText(/security hint/i),
+      "My favourite colour"
+    );
+    await userEvent.type(
+      screen.getByLabelText(/email one time pin/i),
+      "112233"
+    );
     await userEvent.type(screen.getByLabelText(/sms one time pin/i), "445566");
     fireEvent.submit(
       screen.getByRole("button", { name: /continue/i }).closest("form")

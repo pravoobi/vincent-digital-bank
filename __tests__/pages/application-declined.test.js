@@ -4,7 +4,10 @@ import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../testUtils";
 import ApplicationDeclined from "../../pages/application-declined";
 
-jest.mock("next/link", () => ({ __esModule: true, default: ({ children }) => children }));
+jest.mock("next/link", () => ({
+  __esModule: true,
+  default: ({ children }) => children,
+}));
 
 describe("ApplicationDeclined page", () => {
   it("renders the sorry heading", () => {
@@ -14,7 +17,9 @@ describe("ApplicationDeclined page", () => {
 
   it("renders the declined message with a contact number", () => {
     renderWithProviders(<ApplicationDeclined />);
-    expect(screen.getByText(/your application has been declined/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/your application has been declined/i)
+    ).toBeInTheDocument();
     expect(screen.getByText(/1800-3489-2348/)).toBeInTheDocument();
   });
 

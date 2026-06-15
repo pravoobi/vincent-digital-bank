@@ -7,8 +7,14 @@ import { APPLICATION_STEPS } from "../../constants";
 
 const mockPush = jest.fn();
 jest.mock("next/router", () => ({ useRouter: () => ({ push: mockPush }) }));
-jest.mock("next/link", () => ({ __esModule: true, default: ({ children }) => children }));
-jest.mock("next/image", () => ({ __esModule: true, default: (props) => <img {...props} /> }));
+jest.mock("next/link", () => ({
+  __esModule: true,
+  default: ({ children }) => children,
+}));
+jest.mock("next/image", () => ({
+  __esModule: true,
+  default: (props) => <img {...props} />,
+}));
 
 describe("Home page", () => {
   beforeEach(() => {
@@ -22,7 +28,9 @@ describe("Home page", () => {
 
   it("renders the Open an Account button", () => {
     renderWithProviders(<Home />);
-    expect(screen.getByRole("button", { name: /open an account/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /open an account/i })
+    ).toBeInTheDocument();
   });
 
   it("navigates to start-application on button click", () => {

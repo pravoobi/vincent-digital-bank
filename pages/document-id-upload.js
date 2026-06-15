@@ -92,9 +92,7 @@ export default function DocumentIdUpload() {
         zipCode,
       })
     );
-    reduxDispatch(
-      setApplicationStep(APPLICATION_STEPS.PERSONAL_INFORMATION)
-    );
+    reduxDispatch(setApplicationStep(APPLICATION_STEPS.PERSONAL_INFORMATION));
     router.push(PERSONAL_INFORMATION_ROUTE);
   };
 

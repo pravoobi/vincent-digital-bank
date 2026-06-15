@@ -18,7 +18,9 @@ import useWindowSize from "../utils/useWindowSize";
 
 export default function Dashboard() {
   // @ts-ignore
-  const applicationData = useSelector((state) => state.applicationData.application);
+  const applicationData = useSelector(
+    (state) => state.applicationData.application
+  );
   const { firstName = "John" } = applicationData || {};
 
   const { width } = useWindowSize();

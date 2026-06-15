@@ -4,8 +4,14 @@ import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../testUtils";
 import Dashboard from "../../pages/dashboard";
 
-jest.mock("next/link", () => ({ __esModule: true, default: ({ children }) => children }));
-jest.mock("../../utils/useWindowSize", () => () => ({ width: 1024, height: 768 }));
+jest.mock("next/link", () => ({
+  __esModule: true,
+  default: ({ children }) => children,
+}));
+jest.mock("../../utils/useWindowSize", () => () => ({
+  width: 1024,
+  height: 768,
+}));
 
 describe("Dashboard page", () => {
   it("shows default first name John when no application data is stored", () => {

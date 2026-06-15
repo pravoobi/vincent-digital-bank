@@ -7,7 +7,11 @@ import { ChakraProvider } from "@chakra-ui/react";
 import rootReducer from "../store/reducers";
 
 export function renderWithProviders(ui, { preloadedState = {} } = {}) {
-  const store = createStore(rootReducer, preloadedState, applyMiddleware(thunk));
+  const store = createStore(
+    rootReducer,
+    preloadedState,
+    applyMiddleware(thunk)
+  );
   function Wrapper({ children }) {
     return (
       <Provider store={store}>

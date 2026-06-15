@@ -8,7 +8,10 @@ import { APPLICATION_STEPS } from "../../constants";
 
 const mockPush = jest.fn();
 jest.mock("next/router", () => ({ useRouter: () => ({ push: mockPush }) }));
-jest.mock("next/link", () => ({ __esModule: true, default: ({ children }) => children }));
+jest.mock("next/link", () => ({
+  __esModule: true,
+  default: ({ children }) => children,
+}));
 
 describe("StartApplication page", () => {
   beforeEach(() => {
@@ -17,7 +20,9 @@ describe("StartApplication page", () => {
 
   it("renders the heading", () => {
     renderWithProviders(<StartApplication />);
-    expect(screen.getByText(/let's start your application/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/let's start your application/i)
+    ).toBeInTheDocument();
   });
 
   it("renders email, password, confirm password fields and consent checkbox", () => {
@@ -31,7 +36,10 @@ describe("StartApplication page", () => {
   it("shows password mismatch error when passwords differ", async () => {
     renderWithProviders(<StartApplication />);
     await userEvent.type(screen.getByPlaceholderText("Password"), "abc123");
-    await userEvent.type(screen.getByPlaceholderText("Confirm Password"), "xyz999");
+    await userEvent.type(
+      screen.getByPlaceholderText("Confirm Password"),
+      "xyz999"
+    );
     expect(
       screen.getByText(/password and confirm passwords do not match/i)
     ).toBeInTheDocument();
@@ -40,19 +48,30 @@ describe("StartApplication page", () => {
   it("does not navigate when passwords do not match", async () => {
     renderWithProviders(<StartApplication />);
     await userEvent.type(screen.getByPlaceholderText("Password"), "abc123");
-    await userEvent.type(screen.getByPlaceholderText("Confirm Password"), "xyz999");
+    await userEvent.type(
+      screen.getByPlaceholderText("Confirm Password"),
+      "xyz999"
+    );
     fireEvent.submit(screen.getByPlaceholderText("Password").closest("form"));
     expect(mockPush).not.toHaveBeenCalled();
   });
 
   it("dispatches application data and navigates when form is valid", async () => {
     const { store } = renderWithProviders(<StartApplication />);
-    await userEvent.type(screen.getByPlaceholderText("Email"), "test@example.com");
+    await userEvent.type(
+      screen.getByPlaceholderText("Email"),
+      "test@example.com"
+    );
     await userEvent.type(screen.getByPlaceholderText("Password"), "secret123");
-    await userEvent.type(screen.getByPlaceholderText("Confirm Password"), "secret123");
+    await userEvent.type(
+      screen.getByPlaceholderText("Confirm Password"),
+      "secret123"
+    );
     await userEvent.click(screen.getByLabelText(/consent checkbox/i));
     fireEvent.submit(screen.getByPlaceholderText("Email").closest("form"));
-    await waitFor(() => expect(mockPush).toHaveBeenCalledWith("/document-id-upload"));
+    await waitFor(() =>
+      expect(mockPush).toHaveBeenCalledWith("/document-id-upload")
+    );
     const appState = store.getState().applicationData;
     expect(appState.application.email).toBe("test@example.com");
     expect(appState.step).toBe(APPLICATION_STEPS.DOCUMENT_UPLOAD);
@@ -64,7 +83,10 @@ describe("StartApplication page", () => {
     await userEvent.click(checkbox);
     await userEvent.click(checkbox);
     await userEvent.type(screen.getByPlaceholderText("Password"), "abc123");
-    await userEvent.type(screen.getByPlaceholderText("Confirm Password"), "abc123");
+    await userEvent.type(
+      screen.getByPlaceholderText("Confirm Password"),
+      "abc123"
+    );
     fireEvent.submit(screen.getByPlaceholderText("Email").closest("form"));
     await waitFor(() => expect(mockPush).toHaveBeenCalled());
     expect(store.getState().applicationData.application.consents).toEqual([]);
