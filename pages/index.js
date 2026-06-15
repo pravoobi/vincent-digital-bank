@@ -17,7 +17,7 @@ export default function Home() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    dispatch(setApplicationStep(APPLICATION_STEPS.DOCUMENT_UPLOAD));
+    dispatch(setApplicationStep(APPLICATION_STEPS.START));
     router.push(START_APPLICATION_ROUTE);
   };
   const BackgroundImg = styled("div")`

@@ -93,7 +93,7 @@ export default function DocumentIdUpload() {
       })
     );
     reduxDispatch(
-      setApplicationStep(APPLICATION_STEPS.PERSONAL_INFORMATION_ROUTE)
+      setApplicationStep(APPLICATION_STEPS.PERSONAL_INFORMATION)
     );
     router.push(PERSONAL_INFORMATION_ROUTE);
   };

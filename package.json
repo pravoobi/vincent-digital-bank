@@ -10,6 +10,8 @@
     "check-format": "prettier --check .",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
     "format": "prettier --write .",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build",
     "prepare": "husky install"
   },
@@ -36,12 +38,23 @@
     "tesseract.js": "^2.1.5"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@babel/preset-react": "^7.29.7",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "babel-jest": "^30.4.1",
     "eslint": "8.13.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-next": "12.1.4",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.29.4",
     "husky": "^7.0.4",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^30.4.2",
+    "jest-environment-jsdom": "^30.4.1",
     "prettier": "^2.6.2"
   }
 }

@@ -30,3 +30,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# claude code local settings
+.claude/
+
+# npm lockfile (project uses yarn)
+package-lock.json

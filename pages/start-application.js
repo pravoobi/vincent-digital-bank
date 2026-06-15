@@ -43,11 +43,14 @@ export default function StartApplication() {
         { consent: CONSENTS.PRIVACY_POLICY, accepted: true },
         { consent: CONSENTS.PRIVACY_NOTICE, accepted: true },
       ]);
+    } else {
+      setConsents([]);
     }
   };
 
   const handleStartApplicationSubmit = (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) return;
     dispatch(setApplicationData({ email: emailAddress, password, consents }));
     dispatch(setApplicationStep(APPLICATION_STEPS.DOCUMENT_UPLOAD));
     router.push(DOCUMENT_ID_UPLOAD_ROUTE);

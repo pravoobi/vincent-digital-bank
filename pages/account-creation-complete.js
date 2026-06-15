@@ -28,10 +28,11 @@ export default function AccountCreationComplete() {
   const [routingNumber, setRoutingNumber] = useState("");
   const [isConfettiShown, setConfettiShown] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setConfettiShown(false);
     }, 10000);
-  });
+    return () => clearTimeout(timer);
+  }, []);
 
   const dispatch = useDispatch();
   const router = useRouter();

@@ -33,13 +33,15 @@ function OcrTextModal({ ocrText = "", documentDispatch }) {
   };
 
   useEffect(() => {
-    document.addEventListener("mouseup", (event) => {
-      if (window.getSelection().toString().length) {
-        setSelectedText(window.getSelection().toString());
+    const handleMouseUp = () => {
+      const selection = window.getSelection().toString();
+      if (selection.length) {
+        setSelectedText(selection);
       }
-    });
-    return () => window.removeEventListener("mouseup", null);
-  });
+    };
+    document.addEventListener("mouseup", handleMouseUp);
+    return () => document.removeEventListener("mouseup", handleMouseUp);
+  }, []);
   const formField = (field) => {
     return (
       <>
@@ -64,9 +66,10 @@ function OcrTextModal({ ocrText = "", documentDispatch }) {
 
   const handleDone = () => {
     const newField = FIELDS[formIndex];
+    const updatedState = { ...stateReducer, [newField]: selectedText };
     // @ts-ignore
     dispatch({ type: newField, value: selectedText });
-    documentDispatch({ type: "FIELDS", value: stateReducer });
+    documentDispatch({ type: "FIELDS", value: updatedState });
     onClose();
   };
   const handleNextButton = () => {
