@@ -27,7 +27,7 @@ export default function AccountCreationComplete() {
   const router = useRouter();
   const { width, height } = useWindowSize();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(setApplicationData({ accountNumber, routingNumber }));
     dispatch(setApplicationStep(APPLICATION_STEPS.DASHBOARD));

@@ -3,9 +3,12 @@
 import { useSelector } from "react-redux";
 import { Info } from "lucide-react";
 import { Container } from "@practics/ui";
+import { RootState } from "../../store/store";
 
 export default function Dashboard() {
-  const application = useSelector((state) => state.applicationData.application);
+  const application = useSelector(
+    (state: RootState) => state.applicationData.application
+  );
   const { firstName = "John" } = application || {};
 
   return (
