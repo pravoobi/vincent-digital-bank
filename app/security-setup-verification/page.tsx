@@ -20,7 +20,7 @@ export default function SecuritySetupVerification() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(setApplicationData({ securityWord, securityHint, otp, smsotp }));
     dispatch(setApplicationStep(APPLICATION_STEPS.ACCOUNT_CREATION_COMPLETE));

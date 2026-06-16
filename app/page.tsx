@@ -2,11 +2,12 @@
 
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Sparkles } from "lucide-react";
 import { Button } from "@practics/ui";
 import { setApplicationStep } from "../store/applicationSlice";
 import { APPLICATION_STEPS } from "../constants";
 import { START_APPLICATION_ROUTE } from "../routes";
+import { isAiEnabled } from "../lib/config";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -40,6 +41,17 @@ export default function Home() {
             >
               Open an Account
             </Button>
+            {isAiEnabled && (
+              <Button
+                onClick={() => router.push("/onboard/step-1")}
+                size="lg"
+                variant="outline"
+                className="mt-3 w-[250px] rounded-full border-blue-700 text-blue-900"
+                iconRight={<Sparkles className="h-5 w-5" />}
+              >
+                AI-Assisted Onboarding
+              </Button>
+            )}
           </div>
         </div>
       </div>

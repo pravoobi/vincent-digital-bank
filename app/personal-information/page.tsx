@@ -34,7 +34,7 @@ export default function PersonalInformation() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(setApplicationData({ citizenship, phone, ssn, occupation }));
     dispatch(setApplicationStep(APPLICATION_STEPS.SECURITY_SETUP_VERIFICATION));

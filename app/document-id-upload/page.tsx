@@ -25,7 +25,7 @@ const ID_TYPES = [
 
 export default function DocumentIdUpload() {
   const [idType, setIdType] = useState("");
-  const [uploadFile, setUploadFile] = useState(null);
+  const [uploadFile, setUploadFile] = useState<File | null>(null);
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -39,10 +39,10 @@ export default function DocumentIdUpload() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const onChange = (key) => (e) =>
+  const onChange = (key: string) => (e: React.ChangeEvent<HTMLInputElement>) =>
     setForm((prev) => ({ ...prev, [key]: e.target.value }));
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(setApplicationData({ ...form, idType }));
     dispatch(setApplicationStep(APPLICATION_STEPS.PERSONAL_INFORMATION));

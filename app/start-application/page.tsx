@@ -17,12 +17,14 @@ export default function StartApplication() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [consents, setConsents] = useState([]);
+  const [consents, setConsents] = useState<
+    { consent: string; accepted: boolean }[]
+  >([]);
 
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleConsents = (checked) => {
+  const handleConsents = (checked: boolean) => {
     if (checked) {
       setConsents([
         { consent: CONSENTS.PRIVACY_POLICY, accepted: true },
@@ -36,7 +38,7 @@ export default function StartApplication() {
   const passwordsMismatch =
     password !== "" && confirmPassword !== "" && password !== confirmPassword;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (passwordsMismatch) return;
     dispatch(setApplicationData({ email: emailAddress, password, consents }));

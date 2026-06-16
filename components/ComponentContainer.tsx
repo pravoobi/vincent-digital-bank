@@ -3,7 +3,11 @@ import Image from "next/image";
 import { Menu } from "lucide-react";
 import Footer from "./Footer";
 
-export default function ComponentContainer({ children }) {
+export default function ComponentContainer({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <div className="flex min-h-screen flex-col">
       <nav className="sticky top-0 z-10 flex w-full items-center justify-between px-2 py-1 sm:px-6">
