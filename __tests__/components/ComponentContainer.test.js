@@ -1,44 +1,49 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import { ChakraProvider } from "@chakra-ui/react";
 import ComponentContainer from "../../components/ComponentContainer";
 
-jest.mock("next/link", () => ({
-  __esModule: true,
-  default: ({ children, href }) => <a href={href}>{children}</a>,
-}));
 jest.mock("next/image", () => ({
   __esModule: true,
-  default: (props) => <img {...props} />,
+  default: (props) => {
+    // eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element
+    return <img {...props} />;
+  },
 }));
-
-function renderContainer(children = <div>Content</div>) {
-  return render(
-    <ChakraProvider>
-      <ComponentContainer>{children}</ComponentContainer>
-    </ChakraProvider>
-  );
-}
 
 describe("ComponentContainer", () => {
   it("renders the Vincent Bank logo image", () => {
-    renderContainer();
+    render(
+      <ComponentContainer>
+        <div>child</div>
+      </ComponentContainer>
+    );
     expect(screen.getByAltText("Vincent Bank")).toBeInTheDocument();
   });
 
   it("renders children inside main", () => {
-    renderContainer(<p>Hello World</p>);
+    render(
+      <ComponentContainer>
+        <p>Hello World</p>
+      </ComponentContainer>
+    );
     expect(screen.getByText("Hello World")).toBeInTheDocument();
   });
 
   it("renders the footer", () => {
-    renderContainer();
+    render(
+      <ComponentContainer>
+        <div />
+      </ComponentContainer>
+    );
     expect(screen.getByText(/site terms/i)).toBeInTheDocument();
   });
 
   it("renders a nav element", () => {
-    renderContainer();
+    render(
+      <ComponentContainer>
+        <div />
+      </ComponentContainer>
+    );
     expect(screen.getByRole("navigation")).toBeInTheDocument();
   });
 });

@@ -1,16 +1,19 @@
 import "@testing-library/jest-dom";
-import React from "react";
-import { screen, fireEvent, waitFor, act } from "@testing-library/react";
+import { screen, fireEvent, act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../testUtils";
-import AccountCreationComplete from "../../pages/account-creation-complete";
-import { APPLICATION_STEPS } from "../../constants";
+import AccountCreationComplete from "../../app/account-creation-complete/page";
 
 const mockPush = jest.fn();
-jest.mock("next/router", () => ({ useRouter: () => ({ push: mockPush }) }));
-jest.mock("next/link", () => ({ __esModule: true, default: ({ children }) => children }));
-jest.mock("react-confetti", () => () => <div data-testid="confetti" />);
-jest.mock("../../utils/useWindowSize", () => () => ({ width: 1024, height: 768 }));
+jest.mock("next/navigation", () => ({ useRouter: () => ({ push: mockPush }) }));
+jest.mock("react-confetti", () => {
+  const Mock = () => <div data-testid="confetti" />;
+  return Mock;
+});
+jest.mock("../../utils/useWindowSize", () => () => ({
+  width: 1024,
+  height: 768,
+}));
 
 describe("AccountCreationComplete page", () => {
   beforeEach(() => {
@@ -54,10 +57,10 @@ describe("AccountCreationComplete page", () => {
     fireEvent.submit(
       screen.getByPlaceholderText("AccountNumber").closest("form")
     );
-    await waitFor(() => expect(mockPush).toHaveBeenCalledWith("/dashboard"));
-    const appState = store.getState().applicationData;
-    expect(appState.application.accountNumber).toBe("9876543210");
-    expect(appState.application.routingNumber).toBe("021000021");
-    expect(appState.step).toBe(APPLICATION_STEPS.DASHBOARD);
+    expect(mockPush).toHaveBeenCalledWith("/dashboard");
+    const app = store.getState().applicationData;
+    expect(app.application.accountNumber).toBe("9876543210");
+    expect(app.application.routingNumber).toBe("021000021");
+    expect(app.step).toBe("DASHBOARD");
   });
 });

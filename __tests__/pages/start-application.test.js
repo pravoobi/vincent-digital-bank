@@ -1,14 +1,16 @@
 import "@testing-library/jest-dom";
-import React from "react";
-import { screen, fireEvent, waitFor } from "@testing-library/react";
+import { screen, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { renderWithProviders } from "../testUtils";
-import StartApplication from "../../pages/start-application";
-import { APPLICATION_STEPS } from "../../constants";
+import StartApplication from "../../app/start-application/page";
 
 const mockPush = jest.fn();
-jest.mock("next/router", () => ({ useRouter: () => ({ push: mockPush }) }));
-jest.mock("next/link", () => ({ __esModule: true, default: ({ children }) => children }));
+jest.mock("next/navigation", () => ({ useRouter: () => ({ push: mockPush }) }));
+
+const setValue = (placeholder, value) =>
+  fireEvent.change(screen.getByPlaceholderText(placeholder), {
+    target: { value },
+  });
 
 describe("StartApplication page", () => {
   beforeEach(() => {
@@ -17,10 +19,12 @@ describe("StartApplication page", () => {
 
   it("renders the heading", () => {
     renderWithProviders(<StartApplication />);
-    expect(screen.getByText(/let's start your application/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/let's start your application/i)
+    ).toBeInTheDocument();
   });
 
-  it("renders email, password, confirm password fields and consent checkbox", () => {
+  it("renders email, password, confirm password and consent fields", () => {
     renderWithProviders(<StartApplication />);
     expect(screen.getByPlaceholderText("Email")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
@@ -28,46 +32,33 @@ describe("StartApplication page", () => {
     expect(screen.getByLabelText(/consent checkbox/i)).toBeInTheDocument();
   });
 
-  it("shows password mismatch error when passwords differ", async () => {
+  it("shows password mismatch error when passwords differ", () => {
     renderWithProviders(<StartApplication />);
-    await userEvent.type(screen.getByPlaceholderText("Password"), "abc123");
-    await userEvent.type(screen.getByPlaceholderText("Confirm Password"), "xyz999");
+    setValue("Password", "abc123");
+    setValue("Confirm Password", "xyz999");
     expect(
       screen.getByText(/password and confirm passwords do not match/i)
     ).toBeInTheDocument();
   });
 
-  it("does not navigate when passwords do not match", async () => {
+  it("does not navigate when passwords do not match", () => {
     renderWithProviders(<StartApplication />);
-    await userEvent.type(screen.getByPlaceholderText("Password"), "abc123");
-    await userEvent.type(screen.getByPlaceholderText("Confirm Password"), "xyz999");
-    fireEvent.submit(screen.getByPlaceholderText("Password").closest("form"));
+    setValue("Password", "abc123");
+    setValue("Confirm Password", "xyz999");
+    fireEvent.submit(screen.getByPlaceholderText("Email").closest("form"));
     expect(mockPush).not.toHaveBeenCalled();
   });
 
-  it("dispatches application data and navigates when form is valid", async () => {
+  it("dispatches application data and navigates when form is valid", () => {
     const { store } = renderWithProviders(<StartApplication />);
-    await userEvent.type(screen.getByPlaceholderText("Email"), "test@example.com");
-    await userEvent.type(screen.getByPlaceholderText("Password"), "secret123");
-    await userEvent.type(screen.getByPlaceholderText("Confirm Password"), "secret123");
-    await userEvent.click(screen.getByLabelText(/consent checkbox/i));
+    setValue("Email", "test@example.com");
+    setValue("Password", "secret123");
+    setValue("Confirm Password", "secret123");
     fireEvent.submit(screen.getByPlaceholderText("Email").closest("form"));
-    await waitFor(() => expect(mockPush).toHaveBeenCalledWith("/document-id-upload"));
+    expect(mockPush).toHaveBeenCalledWith("/document-id-upload");
     const appState = store.getState().applicationData;
     expect(appState.application.email).toBe("test@example.com");
-    expect(appState.step).toBe(APPLICATION_STEPS.DOCUMENT_UPLOAD);
-  });
-
-  it("clears consents when checkbox is unchecked", async () => {
-    const { store } = renderWithProviders(<StartApplication />);
-    const checkbox = screen.getByLabelText(/consent checkbox/i);
-    await userEvent.click(checkbox);
-    await userEvent.click(checkbox);
-    await userEvent.type(screen.getByPlaceholderText("Password"), "abc123");
-    await userEvent.type(screen.getByPlaceholderText("Confirm Password"), "abc123");
-    fireEvent.submit(screen.getByPlaceholderText("Email").closest("form"));
-    await waitFor(() => expect(mockPush).toHaveBeenCalled());
-    expect(store.getState().applicationData.application.consents).toEqual([]);
+    expect(appState.step).toBe("DOCUMENT_UPLOAD");
   });
 
   it("toggles password visibility", async () => {

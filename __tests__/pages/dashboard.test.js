@@ -1,11 +1,7 @@
 import "@testing-library/jest-dom";
-import React from "react";
 import { screen } from "@testing-library/react";
 import { renderWithProviders } from "../testUtils";
-import Dashboard from "../../pages/dashboard";
-
-jest.mock("next/link", () => ({ __esModule: true, default: ({ children }) => children }));
-jest.mock("../../utils/useWindowSize", () => () => ({ width: 1024, height: 768 }));
+import Dashboard from "../../app/dashboard/page";
 
 describe("Dashboard page", () => {
   it("shows default first name John when no application data is stored", () => {
@@ -17,17 +13,15 @@ describe("Dashboard page", () => {
     renderWithProviders(<Dashboard />, {
       preloadedState: {
         applicationData: {
-          sample: [],
           step: "DASHBOARD",
           application: { firstName: "Alice" },
-          loading: false,
         },
       },
     });
     expect(screen.getByText(/alice, welcome!/i)).toBeInTheDocument();
   });
 
-  it("renders the account table with headers", () => {
+  it("renders account table headers", () => {
     renderWithProviders(<Dashboard />);
     expect(screen.getByText("Account")).toBeInTheDocument();
     expect(screen.getByText("Rate")).toBeInTheDocument();
@@ -36,7 +30,7 @@ describe("Dashboard page", () => {
 
   it("renders the Savers Account row", () => {
     renderWithProviders(<Dashboard />);
-    expect(screen.getByText(/savers account/i)).toBeInTheDocument();
+    expect(screen.getByText(/savers account - 3478/i)).toBeInTheDocument();
   });
 
   it("renders both info banners", () => {

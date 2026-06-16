@@ -1,133 +1,84 @@
-import React from "react";
-import {
-  Center,
-  Flex,
-  Text,
-  Divider,
-  Link,
-  Box,
-  IconButton,
-  VStack,
-  HStack,
-} from "@chakra-ui/react";
-import NextLink from "next/link";
-import { FiTwitter, FiLinkedin, FiYoutube, FiMail } from "react-icons/fi";
+import Link from "next/link";
+import { Twitter, Linkedin, Youtube, Mail } from "lucide-react";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <Box bg="gray.600" color="#FFFFFF" marginTop={6} p={2} width="100%">
-      <Flex
-        justify="space-around"
-        py={3}
-        flexDirection={["column", "row", "row", "row"]}
-      >
-        <VStack>
-          <NextLink href={"/legal/site-terms"} passHref>
-            <Link
-              href={"/legal/site-terms"}
-              _hover={{ textDecor: "underline" }}
-            >
-              Site Terms
-            </Link>
-          </NextLink>
-          <NextLink href={"/legal/privacy-policy"} passHref>
-            <Link
-              href={"/legal/privacy-policy"}
-              _hover={{ textDecor: "underline" }}
-            >
-              Privacy Policy
-            </Link>
-          </NextLink>
-          <NextLink href={"/legal/privacy-notice"} passHref>
-            <Link
-              href={"/legal/privacy-notice"}
-              _hover={{ textDecor: "underline" }}
-            >
-              Privacy Notice
-            </Link>
-          </NextLink>
-        </VStack>
-        <HStack>
-          <Flex align="center" my={4} direction="row" mx={"auto"}>
-            <Link
-              href="https://twitter.com/vincentBank"
-              title="Twitter"
-              isExternal
-            >
-              <IconButton
-                aria-label="Twitter"
-                icon={<FiTwitter />}
-                size="lg"
-                color="#FFF"
-                variant="ghost"
-                _hover={{ backgroundColor: "#DDD" }}
-              />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/vincetBank"
-              title="LinkedIn"
-              isExternal
-            >
-              <IconButton
-                aria-label="LinkedIn"
-                icon={<FiLinkedin />}
-                size="lg"
-                color={"#FFF"}
-                variant="ghost"
-                _hover={{ backgroundColor: "#DDD" }}
-              />
-            </Link>
-            <Link
-              href="https://www.youtube.com/VincentBank"
-              title="YouTube"
-              isExternal
-            >
-              <IconButton
-                aria-label="YouTube"
-                icon={<FiYoutube />}
-                size="lg"
-                color={"#FFF"}
-                variant="ghost"
-                _hover={{ backgroundColor: "#DDD" }}
-              />
-            </Link>
-            <Link href="mailto:info@vincent-bank.com" title="Email" isExternal>
-              <IconButton
-                aria-label="Email"
-                icon={<FiMail />}
-                size="lg"
-                color={"#FFF"}
-                variant="ghost"
-                _hover={{ backgroundColor: "#DDD" }}
-              />
-            </Link>
-          </Flex>
-        </HStack>
-        <VStack>
-          <Text as="h4">Please call us</Text>
-          <Text as="h5">1800-1234-8970</Text>
-        </VStack>
-      </Flex>
-      <Divider />
-      <Center as="small" p={2}>
+    <footer className="mt-6 w-full bg-gray-600 p-2 text-white">
+      <div className="flex flex-col justify-around py-3 md:flex-row">
+        <div className="flex flex-col items-center gap-2">
+          <Link href="/legal/site-terms" className="hover:underline">
+            Site Terms
+          </Link>
+          <Link href="/legal/privacy-policy" className="hover:underline">
+            Privacy Policy
+          </Link>
+          <Link href="/legal/privacy-notice" className="hover:underline">
+            Privacy Notice
+          </Link>
+        </div>
+        <div className="my-4 flex items-center justify-center gap-2">
+          <a
+            href="https://twitter.com/vincentBank"
+            title="Twitter"
+            aria-label="Twitter"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded p-2 hover:bg-gray-500"
+          >
+            <Twitter className="h-6 w-6" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/vincetBank"
+            title="LinkedIn"
+            aria-label="LinkedIn"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded p-2 hover:bg-gray-500"
+          >
+            <Linkedin className="h-6 w-6" />
+          </a>
+          <a
+            href="https://www.youtube.com/VincentBank"
+            title="YouTube"
+            aria-label="YouTube"
+            target="_blank"
+            rel="noreferrer"
+            className="rounded p-2 hover:bg-gray-500"
+          >
+            <Youtube className="h-6 w-6" />
+          </a>
+          <a
+            href="mailto:info@vincent-bank.com"
+            title="Email"
+            aria-label="Email"
+            className="rounded p-2 hover:bg-gray-500"
+          >
+            <Mail className="h-6 w-6" />
+          </a>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <h4 className="font-semibold">Please call us</h4>
+          <h5>1800-1234-8970</h5>
+        </div>
+      </div>
+      <hr className="border-gray-400" />
+      <p className="p-2 text-center text-sm">
         Bank products and services are offered by Vincent Bank®. All deposit
         accounts through Vincent Bank brands are FDIC insured through Vincent
         Bank.
-      </Center>
-      <Flex justify={"center"} width="100%">
-        <Text as="small" mt={4}>
-          &copy; Copyright 2022 - {"2022"},{" "}
-          <Link
-            href="https://vincent-bank.com/"
-            textDecor="underline"
-            isExternal
-          >
-            Vincent Bank LLC
-          </Link>
-          . All Rights Reserved.
-        </Text>
-      </Flex>
-    </Box>
+      </p>
+      <p className="mt-4 text-center text-sm">
+        &copy; Copyright 2022 - 2022,{" "}
+        <a
+          href="https://vincent-bank.com/"
+          target="_blank"
+          rel="noreferrer"
+          className="underline"
+        >
+          Vincent Bank LLC
+        </a>
+        . All Rights Reserved.
+      </p>
+    </footer>
   );
-};
-export default Footer;
+}

@@ -1,19 +1,11 @@
-import React from "react";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { ChakraProvider } from "@chakra-ui/react";
-import rootReducer from "../store/reducers";
+import { makeStore } from "../store/store";
 
-export function renderWithProviders(ui, { preloadedState = {} } = {}) {
-  const store = createStore(rootReducer, preloadedState, applyMiddleware(thunk));
+export function renderWithProviders(ui, { preloadedState } = {}) {
+  const store = makeStore(preloadedState);
   function Wrapper({ children }) {
-    return (
-      <Provider store={store}>
-        <ChakraProvider>{children}</ChakraProvider>
-      </Provider>
-    );
+    return <Provider store={store}>{children}</Provider>;
   }
   return { store, ...render(ui, { wrapper: Wrapper }) };
 }
